@@ -10,7 +10,7 @@ namespace corona92.Models
     {
         public static string connectionString = "data source=mDESKTOP-O209U5U;Database=covid92;User Id=sa;Password=12345678;";
 
-        public List<covidCase> getCases()
+        public List<CovidCase> getCases()
         {
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
@@ -24,20 +24,19 @@ namespace corona92.Models
                 SqlDataReader rdr = cmd.ExecuteReader();
 
 
-                List<covidCase> list = new List<covidCase>();
+                List<CovidCase> list = new List<CovidCase>();
                 while (rdr.Read())
                 {
-                    covidCase case=
+                    CovidCase cases = new CovidCase();
 
-                    case. = rdr["userName"].ToString();
-                    user.password = rdr["userPassword"].ToString();
-                    user.gender = rdr["gender"].ToString();
-                    user.dateOfBirth = rdr["dateOfBirth"].ToString();
-                    user.userEmail = rdr["userEmail"].ToString();
-                    user.Fname = rdr["Fname"].ToString();
-                    user.Lname = rdr["Lname"].ToString();
-                    user.userStatus = rdr["userStatus"].ToString();
-                    list.Add(user);
+                    cases.province = rdr["province"].ToString();
+                    cases.city = rdr["city"].ToString();
+                    cases.latitude = float.Parse(rdr["latitude"].ToString());
+                    cases.longitude = float.Parse(rdr["dateOfBirth"].ToString());
+                    cases.recovered = int.Parse(rdr["userEmail"].ToString());
+                    cases.deaths = int.Parse(rdr["Fname"].ToString());
+                    cases.confirmed = int.Parse(rdr["Lname"].ToString());
+                    list.Add(cases);
                 }
                 rdr.Close();
                 con.Close();
@@ -52,4 +51,5 @@ namespace corona92.Models
 
             }
         }
+    }
 }

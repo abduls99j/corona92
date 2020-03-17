@@ -1,8 +1,35 @@
-﻿@{
+﻿@using corona92.Models
+@model List<CovidCase>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <table>
+        <thead>
+            <tr>Province</tr>
+            <tr>City</tr>
+            <tr>longitude</tr>
+            <tr>latitude</tr>
+            <tr>Confirmed</tr>
+            <tr>Deaths</tr>
+            <tr>Recovered</tr>
+
+        </thead>
+        <tbody>
+            @{
+                foreach (var cases in Model)
+                {
+                    <tr>@cases.province</tr>
+                    <tr>@cases.city</tr>
+                    <tr>@cases.longitude</tr>
+                    <tr>@cases.latitude</tr>
+                    <tr>@cases.confirmed</tr>
+                    <tr>@cases.deaths</tr>
+                    <tr>@cases.recovered</tr>
+                }
+            }
+        </tbody>
+    </table>
+
 </div>
